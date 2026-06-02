@@ -77,7 +77,7 @@
     };
 
     this.soilAssetImage = image;
-    image.src = "assets/soil-texture.png?v=sidefarm-22";
+    image.src = "assets/soil-texture.png?v=sidefarm-23";
   };
 
   Renderer.prototype.refreshSoilAssetPattern = function () {

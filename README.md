@@ -50,7 +50,7 @@ The folder includes `project.json`, so Wallpaper Engine exposes the custom prope
 - Wallpaper Engine editor controls for visual quality, UI/stats, interaction, team colors, optional RGB/music color modes, ant caps, simulation speed, food, fire/rain hazards, combat, pheromones, dirt resolution, dig economy, ant speed, and particle cap.
 - Wallpaper Engine audio input can softly pulse colony lights, glass glare, contested tunnel glow, and rain ripples.
 - Optional RGB hardware sync mirrors the two colony colors when Wallpaper Engine's LED plugin is available.
-- Cinematic Mode hides all text overlays for a clean Workshop-friendly wallpaper view.
+- Cinematic Mode is enabled by default and hides all text overlays for a clean Workshop-friendly wallpaper view.
 - Combat, ant death, base damage, and colony collapse.
 - Event messages for food blooms, colony growth, queen attacks, collapses, fire outbreaks, and rainwater seeps.
 - Lightweight particles for food, hits, death, digging, fire, water, and base collapse.
@@ -62,7 +62,7 @@ The folder includes `project.json`, so Wallpaper Engine exposes the custom prope
 ## Wallpaper Engine Properties
 
 - Visual quality.
-- Cinematic Mode for a fully UI-free view.
+- Cinematic Mode for a fully UI-free view, enabled by default for Workshop subscribers.
 - Event text and stats overlays.
 - Glass polish, particles, and mouse interaction.
 - Team colors.
@@ -79,6 +79,7 @@ The folder includes `project.json`, so Wallpaper Engine exposes the custom prope
 
 ## Runtime Notes
 
+- The default Workshop view is cinematic and UI-free. Event text and stats can be turned back on from the Wallpaper Engine properties panel.
 - Music reactivity is active in Wallpaper Engine when audio processing is enabled; in a normal browser it stays idle.
 - RGB hardware sync depends on Wallpaper Engine's LED plugin and supported hardware.
 - High visual quality uses additional canvas glow, particle, pheromone, and tunnel-wear layers. Use the Low CPU/GPU setting for laptops, battery use, or very high-resolution displays.

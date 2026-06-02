@@ -9,7 +9,7 @@
     simulationSpeed: 1,
     disasterFrequency: 0.7,
     visualQuality: "high",
-    cinematicMode: false,
+    cinematicMode: true,
     showUI: true,
     showParticles: true,
     glassPolish: true,
