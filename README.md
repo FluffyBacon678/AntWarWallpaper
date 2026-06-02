@@ -29,7 +29,7 @@ The folder includes `project.json`, so Wallpaper Engine exposes the custom prope
 
 - Fullscreen Canvas 2D renderer with resize handling and device-pixel-ratio scaling.
 - Higher-resolution side-view soil wall with a generated dirt texture asset, glass framing, tunnels, caves, food pockets, and base chambers.
-- Thin sky and grass surface strip, subtle parallax darkness over the soil wall, ambient motes, glass glare, scratches, and mineral flecks.
+- Thin sky and grass surface strip, subtle parallax darkness over the soil wall, ambient motes, glass glare, scratches, condensation, water streaks, and mineral flecks.
 - Two default colonies with colored queen/base nodes, health, food storage, workers, soldiers, and collapse state.
 - Colonies start far apart on opposite sides of the ant farm.
 - Bases generate dig points over time, and delivered food adds extra dig points.
@@ -50,6 +50,7 @@ The folder includes `project.json`, so Wallpaper Engine exposes the custom prope
 - Wallpaper Engine editor controls for visual quality, UI/stats, interaction, team colors, optional RGB/music color modes, ant caps, simulation speed, food, fire/rain hazards, combat, pheromones, dirt resolution, dig economy, ant speed, and particle cap.
 - Wallpaper Engine audio input can softly pulse colony lights, glass glare, contested tunnel glow, and rain ripples.
 - Optional RGB hardware sync mirrors the two colony colors when Wallpaper Engine's LED plugin is available.
+- Cinematic Mode hides all text overlays for a clean Workshop-friendly wallpaper view.
 - Combat, ant death, base damage, and colony collapse.
 - Event messages for food blooms, colony growth, queen attacks, collapses, fire outbreaks, and rainwater seeps.
 - Lightweight particles for food, hits, death, digging, fire, water, and base collapse.
@@ -61,8 +62,9 @@ The folder includes `project.json`, so Wallpaper Engine exposes the custom prope
 ## Wallpaper Engine Properties
 
 - Visual quality.
+- Cinematic Mode for a fully UI-free view.
 - Event text and stats overlays.
-- Particles and mouse interaction.
+- Glass polish, particles, and mouse interaction.
 - Team colors.
 - Colony color mode: manual, slow RGB, or music pulse.
 - Music-reactive lighting and sensitivity.

@@ -19,6 +19,8 @@
     this.soilAssetReady = false;
     this.ambientMotes = [];
     this.glassScratches = [];
+    this.glassStreaks = [];
+    this.condensationDrops = [];
     this.terrainLayer = null;
     this.terrainLayerCtx = null;
     this.terrainLayerVersion = -1;
@@ -36,6 +38,8 @@
     this.refreshSoilAssetPattern();
     this.ambientMotes = this.createAmbientMotes(width, height);
     this.glassScratches = this.createGlassScratches(width, height);
+    this.glassStreaks = this.createGlassStreaks(width, height);
+    this.condensationDrops = this.createCondensationDrops(width, height);
     this.terrainLayerVersion = -1;
     this.terrainLayerWidth = width;
     this.terrainLayerHeight = height;
@@ -73,7 +77,7 @@
     };
 
     this.soilAssetImage = image;
-    image.src = "assets/soil-texture.png?v=sidefarm-21";
+    image.src = "assets/soil-texture.png?v=sidefarm-22";
   };
 
   Renderer.prototype.refreshSoilAssetPattern = function () {
@@ -226,6 +230,46 @@
     }
 
     return scratches;
+  };
+
+  Renderer.prototype.createGlassStreaks = function (width, height) {
+    var count = this.settings.visualQuality === "low" ? 8 : 24;
+    var streaks = [];
+
+    for (var i = 0; i < count; i += 1) {
+      streaks.push({
+        x: Utils.randomRange(14, Math.max(18, width - 14)),
+        y: Utils.randomRange(-height * 0.2, height * 0.92),
+        length: Utils.randomRange(44, 190),
+        width: Utils.randomRange(0.7, 1.8),
+        speed: Utils.randomRange(1.2, 5.8),
+        alpha: Utils.randomRange(0.018, 0.065),
+        phase: Math.random() * Utils.TAU
+      });
+    }
+
+    return streaks;
+  };
+
+  Renderer.prototype.createCondensationDrops = function (width, height) {
+    var count = this.settings.visualQuality === "low" ? 16 : 48;
+    var drops = [];
+
+    for (var i = 0; i < count; i += 1) {
+      var edgeBias = Math.random();
+      var nearEdge = edgeBias < 0.68;
+      drops.push({
+        x: nearEdge
+          ? (Math.random() < 0.5 ? Utils.randomRange(10, 52) : Utils.randomRange(Math.max(10, width - 52), width - 10))
+          : Utils.randomRange(18, Math.max(19, width - 18)),
+        y: Utils.randomRange(18, Math.max(20, height - 18)),
+        radius: Utils.randomRange(0.8, 2.9),
+        alpha: Utils.randomRange(0.018, 0.082),
+        phase: Math.random() * Utils.TAU
+      });
+    }
+
+    return drops;
   };
 
   Renderer.prototype.render = function (world, ui) {
@@ -1696,6 +1740,7 @@
     ctx.save();
 
     this.drawAmbientMotes(ctx, world);
+    this.drawGlassPolish(ctx, world);
     var audio = this.audioValue(world, "level");
 
     var vignette = ctx.createRadialGradient(
@@ -1753,6 +1798,62 @@
     ctx.strokeStyle = "rgba(255, 255, 255, 0.1)";
     ctx.lineWidth = 1;
     ctx.strokeRect(16, 16, world.width - 32, world.height - 32);
+
+    ctx.restore();
+  };
+
+  Renderer.prototype.drawGlassPolish = function (ctx, world) {
+    if (!this.settings.glassPolish || this.settings.visualQuality === "low") {
+      return;
+    }
+
+    ctx.save();
+    ctx.globalCompositeOperation = "screen";
+
+    for (var i = 0; i < this.glassStreaks.length; i += 1) {
+      var streak = this.glassStreaks[i];
+      var y = (streak.y + world.time * streak.speed) % (world.height + streak.length + 40) - streak.length;
+      var bend = Math.sin(world.time * 0.24 + streak.phase) * 3.5;
+      var gradient = ctx.createLinearGradient(streak.x, y, streak.x + bend, y + streak.length);
+      gradient.addColorStop(0, "rgba(219, 251, 255, 0)");
+      gradient.addColorStop(0.18, "rgba(219, 251, 255, " + streak.alpha + ")");
+      gradient.addColorStop(0.72, "rgba(167, 221, 224, " + (streak.alpha * 0.62) + ")");
+      gradient.addColorStop(1, "rgba(219, 251, 255, 0)");
+      ctx.strokeStyle = gradient;
+      ctx.lineWidth = streak.width;
+      ctx.lineCap = "round";
+      ctx.beginPath();
+      ctx.moveTo(streak.x, y);
+      ctx.bezierCurveTo(streak.x + bend, y + streak.length * 0.24, streak.x - bend * 0.6, y + streak.length * 0.68, streak.x + bend * 0.35, y + streak.length);
+      ctx.stroke();
+    }
+
+    for (var d = 0; d < this.condensationDrops.length; d += 1) {
+      var drop = this.condensationDrops[d];
+      var pulse = 0.75 + Math.sin(world.time * 0.7 + drop.phase) * 0.25;
+      ctx.globalAlpha = drop.alpha * pulse;
+      ctx.fillStyle = "#dffcff";
+      ctx.beginPath();
+      ctx.arc(drop.x, drop.y, drop.radius, 0, Utils.TAU);
+      ctx.fill();
+
+      ctx.globalAlpha = drop.alpha * 0.7;
+      ctx.strokeStyle = "#ffffff";
+      ctx.lineWidth = 0.7;
+      ctx.beginPath();
+      ctx.arc(drop.x - drop.radius * 0.22, drop.y - drop.radius * 0.22, drop.radius * 0.45, 0, Utils.TAU);
+      ctx.stroke();
+    }
+
+    var edgeMist = ctx.createLinearGradient(0, 0, world.width, 0);
+    edgeMist.addColorStop(0, "rgba(219, 252, 249, 0.08)");
+    edgeMist.addColorStop(0.045, "rgba(219, 252, 249, 0.018)");
+    edgeMist.addColorStop(0.5, "rgba(219, 252, 249, 0)");
+    edgeMist.addColorStop(0.955, "rgba(219, 252, 249, 0.018)");
+    edgeMist.addColorStop(1, "rgba(219, 252, 249, 0.08)");
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = edgeMist;
+    ctx.fillRect(0, 0, world.width, world.height);
 
     ctx.restore();
   };

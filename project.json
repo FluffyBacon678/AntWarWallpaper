@@ -20,6 +20,12 @@
           }
         ]
       },
+      "cinematicmode": {
+        "order": 19,
+        "text": "Cinematic Mode (No UI)",
+        "type": "bool",
+        "value": false
+      },
       "showui": {
         "order": 20,
         "text": "Show Event Text",
@@ -38,8 +44,14 @@
         "type": "bool",
         "value": true
       },
-      "enableinteraction": {
+      "glasspolish": {
         "order": 23,
+        "text": "Glass Polish",
+        "type": "bool",
+        "value": true
+      },
+      "enableinteraction": {
+        "order": 24,
         "text": "Mouse Interaction",
         "type": "bool",
         "value": true

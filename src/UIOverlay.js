@@ -31,26 +31,28 @@
   };
 
   UIOverlay.prototype.draw = function (ctx, world) {
-    if (!this.settings.showUI) {
+    if (this.settings.cinematicMode) {
       return;
     }
 
     ctx.save();
-    ctx.textBaseline = "top";
-    ctx.font = "12px Segoe UI, Arial, sans-serif";
+    if (this.settings.showUI) {
+      ctx.textBaseline = "top";
+      ctx.font = "12px Segoe UI, Arial, sans-serif";
 
-    var x = 18;
-    var y = 16;
-    for (var i = this.messages.length - 1; i >= 0; i -= 1) {
-      var message = this.messages[i];
-      var alpha = Math.min(1, message.life / 0.7, message.life / message.maxLife + 0.15);
-      ctx.globalAlpha = alpha;
-      ctx.fillStyle = "rgba(3, 7, 6, 0.42)";
-      var width = ctx.measureText(message.text).width + 18;
-      ctx.fillRect(x - 8, y - 4, width, 22);
-      ctx.fillStyle = message.color;
-      ctx.fillText(message.text, x, y);
-      y += 24;
+      var x = 18;
+      var y = 16;
+      for (var i = this.messages.length - 1; i >= 0; i -= 1) {
+        var message = this.messages[i];
+        var alpha = Math.min(1, message.life / 0.7, message.life / message.maxLife + 0.15);
+        ctx.globalAlpha = alpha;
+        ctx.fillStyle = "rgba(3, 7, 6, 0.42)";
+        var width = ctx.measureText(message.text).width + 18;
+        ctx.fillRect(x - 8, y - 4, width, 22);
+        ctx.fillStyle = message.color;
+        ctx.fillText(message.text, x, y);
+        y += 24;
+      }
     }
 
     if (this.settings.showStats) {
