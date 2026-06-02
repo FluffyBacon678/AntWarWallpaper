@@ -1,0 +1,277 @@
+{
+  "description": "A living side-view ant farm wallpaper where two colonies dig, build, gather, fight, and compete underground.",
+  "file": "index.html",
+  "supportsaudioprocessing": true,
+  "general": {
+    "properties": {
+      "visualquality": {
+        "order": 10,
+        "text": "Visual Quality",
+        "type": "combo",
+        "value": "high",
+        "options": [
+          {
+            "label": "High",
+            "value": "high"
+          },
+          {
+            "label": "Low CPU/GPU",
+            "value": "low"
+          }
+        ]
+      },
+      "showui": {
+        "order": 20,
+        "text": "Show Event Text",
+        "type": "bool",
+        "value": true
+      },
+      "showstats": {
+        "order": 21,
+        "text": "Show Stats",
+        "type": "bool",
+        "value": true
+      },
+      "showparticles": {
+        "order": 22,
+        "text": "Particles",
+        "type": "bool",
+        "value": true
+      },
+      "enableinteraction": {
+        "order": 23,
+        "text": "Mouse Interaction",
+        "type": "bool",
+        "value": true
+      },
+      "team1color": {
+        "order": 30,
+        "text": "Red Colony Color",
+        "type": "color",
+        "value": "1 0.3725 0.3412"
+      },
+      "team2color": {
+        "order": 31,
+        "text": "Blue Colony Color",
+        "type": "color",
+        "value": "0.3412 0.6627 1"
+      },
+      "colonycolormode": {
+        "order": 32,
+        "text": "Colony Color Mode",
+        "type": "combo",
+        "value": "manual",
+        "options": [
+          {
+            "label": "Manual",
+            "value": "manual"
+          },
+          {
+            "label": "Slow RGB",
+            "value": "rgb"
+          },
+          {
+            "label": "Music Pulse",
+            "value": "audio"
+          }
+        ]
+      },
+      "audioreactive": {
+        "order": 33,
+        "text": "Music-Reactive Lighting",
+        "type": "bool",
+        "value": true
+      },
+      "audiosensitivity": {
+        "order": 34,
+        "text": "Music Sensitivity",
+        "type": "slider",
+        "value": 0.9,
+        "min": 0,
+        "max": 2.5,
+        "step": 0.05
+      },
+      "rgbsync": {
+        "order": 35,
+        "text": "RGB Hardware Sync",
+        "type": "bool",
+        "value": false
+      },
+      "maxants": {
+        "order": 40,
+        "text": "Max Ants",
+        "type": "slider",
+        "value": 280,
+        "min": 80,
+        "max": 600,
+        "step": 10
+      },
+      "percolonycap": {
+        "order": 41,
+        "text": "Per-Colony Cap",
+        "type": "slider",
+        "value": 130,
+        "min": 30,
+        "max": 260,
+        "step": 5
+      },
+      "simulationspeed": {
+        "order": 42,
+        "text": "Simulation Speed",
+        "type": "slider",
+        "value": 1,
+        "min": 0.25,
+        "max": 2.5,
+        "step": 0.05
+      },
+      "foodspawnrate": {
+        "order": 50,
+        "text": "Food Spawn Rate",
+        "type": "slider",
+        "value": 0.085,
+        "min": 0.015,
+        "max": 0.25,
+        "step": 0.005
+      },
+      "maxfoodnodes": {
+        "order": 51,
+        "text": "Max Food Nodes",
+        "type": "slider",
+        "value": 34,
+        "min": 8,
+        "max": 80,
+        "step": 1
+      },
+      "userfoodamount": {
+        "order": 52,
+        "text": "Click Food Amount",
+        "type": "slider",
+        "value": 54,
+        "min": 12,
+        "max": 140,
+        "step": 2
+      },
+      "enablecombat": {
+        "order": 60,
+        "text": "Combat",
+        "type": "bool",
+        "value": true
+      },
+      "enablefire": {
+        "order": 61,
+        "text": "Fire Events",
+        "type": "bool",
+        "value": true
+      },
+      "enablerainseep": {
+        "order": 62,
+        "text": "Rainwater Seep Events",
+        "type": "bool",
+        "value": true
+      },
+      "disasterfrequency": {
+        "order": 63,
+        "text": "Hazard Intensity",
+        "type": "slider",
+        "value": 0.7,
+        "min": 0,
+        "max": 2.5,
+        "step": 0.05
+      },
+      "rainseepfrequency": {
+        "order": 64,
+        "text": "Rain Seep Frequency",
+        "type": "slider",
+        "value": 0.035,
+        "min": 0,
+        "max": 0.16,
+        "step": 0.005
+      },
+      "enablepheromones": {
+        "order": 70,
+        "text": "Pheromone Glow",
+        "type": "bool",
+        "value": true
+      },
+      "terraincellsize": {
+        "order": 80,
+        "text": "Dirt Cell Size",
+        "type": "slider",
+        "value": 10,
+        "min": 8,
+        "max": 18,
+        "step": 1
+      },
+      "cavedigradius": {
+        "order": 81,
+        "text": "Tunnel Dig Radius",
+        "type": "slider",
+        "value": 7,
+        "min": 4,
+        "max": 14,
+        "step": 0.5
+      },
+      "chamberdigradius": {
+        "order": 82,
+        "text": "Chamber Size",
+        "type": "slider",
+        "value": 20,
+        "min": 14,
+        "max": 34,
+        "step": 1
+      },
+      "digpointregenrate": {
+        "order": 90,
+        "text": "Base Resource Generation",
+        "type": "slider",
+        "value": 1.55,
+        "min": 0.3,
+        "max": 5,
+        "step": 0.05
+      },
+      "digpointcostpercell": {
+        "order": 91,
+        "text": "Dig Cost",
+        "type": "slider",
+        "value": 0.82,
+        "min": 0.15,
+        "max": 2,
+        "step": 0.05
+      },
+      "workerspeed": {
+        "order": 100,
+        "text": "Worker Speed",
+        "type": "slider",
+        "value": 39,
+        "min": 20,
+        "max": 80,
+        "step": 1
+      },
+      "soldierspeed": {
+        "order": 101,
+        "text": "Soldier Speed",
+        "type": "slider",
+        "value": 47,
+        "min": 20,
+        "max": 90,
+        "step": 1
+      },
+      "particlecap": {
+        "order": 110,
+        "text": "Particle Cap",
+        "type": "slider",
+        "value": 900,
+        "min": 150,
+        "max": 2000,
+        "step": 50
+      }
+    }
+  },
+  "tags": [
+    "Relaxing",
+    "Game",
+    "Nature"
+  ],
+  "title": "Side-View Ant Colony War Aquarium",
+  "type": "web"
+}
