@@ -87,6 +87,7 @@ The folder includes `project.json`, so Wallpaper Engine exposes the custom prope
 ## Project Structure
 
 - `index.html` - browser entry point.
+- `preview.jpg` - UI-free Workshop preview captured from the running wallpaper.
 - `style.css` - fullscreen wallpaper page styling.
 - `assets/soil-texture.png` - generated earthy material texture blended into the cached terrain layer.
 - `main.js` - bootstraps canvas, world, renderer, input, loop, resize, audio, RGB sync, and Wallpaper Engine property hook.

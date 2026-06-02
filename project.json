@@ -1,6 +1,7 @@
 {
   "description": "A living side-view ant farm wallpaper where two colonies dig, build, gather, fight, and compete underground.",
   "file": "index.html",
+  "preview": "preview.jpg",
   "supportsaudioprocessing": true,
   "general": {
     "properties": {
